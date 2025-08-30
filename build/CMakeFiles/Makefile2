@@ -85,12 +85,12 @@ clean: CMakeFiles/SolarSystem.dir/clean
 CMakeFiles/SolarSystem.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=1,2,3 "Built target SolarSystem"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=1,2,3,4 "Built target SolarSystem"
 .PHONY : CMakeFiles/SolarSystem.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SolarSystem.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/SolarSystem.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles 0
 .PHONY : CMakeFiles/SolarSystem.dir/rule
@@ -102,7 +102,7 @@ SolarSystem: CMakeFiles/SolarSystem.dir/rule
 # codegen rule for target.
 CMakeFiles/SolarSystem.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=1,2,3 "Finished codegen for target SolarSystem"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target SolarSystem"
 .PHONY : CMakeFiles/SolarSystem.dir/codegen
 
 # clean rule for target.

@@ -129,29 +129,53 @@ SolarSystem/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/build
 .PHONY : SolarSystem/fast
 
-simple_sphere.o: simple_sphere.cpp.o
-.PHONY : simple_sphere.o
+Sphere.o: Sphere.cpp.o
+.PHONY : Sphere.o
 
 # target to build an object file
-simple_sphere.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o
-.PHONY : simple_sphere.cpp.o
+Sphere.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/Sphere.cpp.o
+.PHONY : Sphere.cpp.o
 
-simple_sphere.i: simple_sphere.cpp.i
-.PHONY : simple_sphere.i
+Sphere.i: Sphere.cpp.i
+.PHONY : Sphere.i
 
 # target to preprocess a source file
-simple_sphere.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/simple_sphere.cpp.i
-.PHONY : simple_sphere.cpp.i
+Sphere.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/Sphere.cpp.i
+.PHONY : Sphere.cpp.i
 
-simple_sphere.s: simple_sphere.cpp.s
-.PHONY : simple_sphere.s
+Sphere.s: Sphere.cpp.s
+.PHONY : Sphere.s
 
 # target to generate assembly for a file
-simple_sphere.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/simple_sphere.cpp.s
-.PHONY : simple_sphere.cpp.s
+Sphere.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/Sphere.cpp.s
+.PHONY : Sphere.cpp.s
+
+gravity_sim.o: gravity_sim.cpp.o
+.PHONY : gravity_sim.o
+
+# target to build an object file
+gravity_sim.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o
+.PHONY : gravity_sim.cpp.o
+
+gravity_sim.i: gravity_sim.cpp.i
+.PHONY : gravity_sim.i
+
+# target to preprocess a source file
+gravity_sim.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/gravity_sim.cpp.i
+.PHONY : gravity_sim.cpp.i
+
+gravity_sim.s: gravity_sim.cpp.s
+.PHONY : gravity_sim.s
+
+# target to generate assembly for a file
+gravity_sim.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SolarSystem.dir/build.make CMakeFiles/SolarSystem.dir/gravity_sim.cpp.s
+.PHONY : gravity_sim.cpp.s
 
 src/glad.o: src/glad.c.o
 .PHONY : src/glad.o
@@ -186,9 +210,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... SolarSystem"
-	@echo "... simple_sphere.o"
-	@echo "... simple_sphere.i"
-	@echo "... simple_sphere.s"
+	@echo "... Sphere.o"
+	@echo "... Sphere.i"
+	@echo "... Sphere.s"
+	@echo "... gravity_sim.o"
+	@echo "... gravity_sim.i"
+	@echo "... gravity_sim.s"
 	@echo "... src/glad.o"
 	@echo "... src/glad.i"
 	@echo "... src/glad.s"

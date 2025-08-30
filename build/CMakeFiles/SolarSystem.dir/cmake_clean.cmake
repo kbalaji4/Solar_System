@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o"
-  "CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o.d"
+  "CMakeFiles/SolarSystem.dir/Sphere.cpp.o"
+  "CMakeFiles/SolarSystem.dir/Sphere.cpp.o.d"
+  "CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o"
+  "CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o.d"
   "CMakeFiles/SolarSystem.dir/src/glad.c.o"
   "CMakeFiles/SolarSystem.dir/src/glad.c.o.d"
   "SolarSystem"

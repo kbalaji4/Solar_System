@@ -9,7 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/keshavbalaji/Desktop/Workspaces/Solar_System/src/glad.c" "CMakeFiles/SolarSystem.dir/src/glad.c.o" "gcc" "CMakeFiles/SolarSystem.dir/src/glad.c.o.d"
-  "/Users/keshavbalaji/Desktop/Workspaces/Solar_System/simple_sphere.cpp" "CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o" "gcc" "CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o.d"
+  "/Users/keshavbalaji/Desktop/Workspaces/Solar_System/Sphere.cpp" "CMakeFiles/SolarSystem.dir/Sphere.cpp.o" "gcc" "CMakeFiles/SolarSystem.dir/Sphere.cpp.o.d"
+  "/Users/keshavbalaji/Desktop/Workspaces/Solar_System/gravity_sim.cpp" "CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o" "gcc" "CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

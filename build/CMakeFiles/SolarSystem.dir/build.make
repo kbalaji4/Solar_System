@@ -72,24 +72,38 @@ include CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/codegen:
 .PHONY : CMakeFiles/SolarSystem.dir/codegen
 
-CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
-CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o: /Users/keshavbalaji/Desktop/Workspaces/Solar_System/simple_sphere.cpp
-CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o: CMakeFiles/SolarSystem.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o -MF CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o.d -o CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o -c /Users/keshavbalaji/Desktop/Workspaces/Solar_System/simple_sphere.cpp
+CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
+CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o: /Users/keshavbalaji/Desktop/Workspaces/Solar_System/gravity_sim.cpp
+CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o: CMakeFiles/SolarSystem.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o -MF CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o.d -o CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o -c /Users/keshavbalaji/Desktop/Workspaces/Solar_System/gravity_sim.cpp
 
-CMakeFiles/SolarSystem.dir/simple_sphere.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/simple_sphere.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/keshavbalaji/Desktop/Workspaces/Solar_System/simple_sphere.cpp > CMakeFiles/SolarSystem.dir/simple_sphere.cpp.i
+CMakeFiles/SolarSystem.dir/gravity_sim.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/gravity_sim.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/keshavbalaji/Desktop/Workspaces/Solar_System/gravity_sim.cpp > CMakeFiles/SolarSystem.dir/gravity_sim.cpp.i
 
-CMakeFiles/SolarSystem.dir/simple_sphere.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/simple_sphere.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/keshavbalaji/Desktop/Workspaces/Solar_System/simple_sphere.cpp -o CMakeFiles/SolarSystem.dir/simple_sphere.cpp.s
+CMakeFiles/SolarSystem.dir/gravity_sim.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/gravity_sim.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/keshavbalaji/Desktop/Workspaces/Solar_System/gravity_sim.cpp -o CMakeFiles/SolarSystem.dir/gravity_sim.cpp.s
+
+CMakeFiles/SolarSystem.dir/Sphere.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
+CMakeFiles/SolarSystem.dir/Sphere.cpp.o: /Users/keshavbalaji/Desktop/Workspaces/Solar_System/Sphere.cpp
+CMakeFiles/SolarSystem.dir/Sphere.cpp.o: CMakeFiles/SolarSystem.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SolarSystem.dir/Sphere.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SolarSystem.dir/Sphere.cpp.o -MF CMakeFiles/SolarSystem.dir/Sphere.cpp.o.d -o CMakeFiles/SolarSystem.dir/Sphere.cpp.o -c /Users/keshavbalaji/Desktop/Workspaces/Solar_System/Sphere.cpp
+
+CMakeFiles/SolarSystem.dir/Sphere.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/Sphere.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/keshavbalaji/Desktop/Workspaces/Solar_System/Sphere.cpp > CMakeFiles/SolarSystem.dir/Sphere.cpp.i
+
+CMakeFiles/SolarSystem.dir/Sphere.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/Sphere.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/keshavbalaji/Desktop/Workspaces/Solar_System/Sphere.cpp -o CMakeFiles/SolarSystem.dir/Sphere.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/glad.c.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/glad.c.o: /Users/keshavbalaji/Desktop/Workspaces/Solar_System/src/glad.c
 CMakeFiles/SolarSystem.dir/src/glad.c.o: CMakeFiles/SolarSystem.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/SolarSystem.dir/src/glad.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/SolarSystem.dir/src/glad.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SolarSystem.dir/src/glad.c.o -MF CMakeFiles/SolarSystem.dir/src/glad.c.o.d -o CMakeFiles/SolarSystem.dir/src/glad.c.o -c /Users/keshavbalaji/Desktop/Workspaces/Solar_System/src/glad.c
 
 CMakeFiles/SolarSystem.dir/src/glad.c.i: cmake_force
@@ -102,19 +116,21 @@ CMakeFiles/SolarSystem.dir/src/glad.c.s: cmake_force
 
 # Object files for target SolarSystem
 SolarSystem_OBJECTS = \
-"CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o" \
+"CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o" \
+"CMakeFiles/SolarSystem.dir/Sphere.cpp.o" \
 "CMakeFiles/SolarSystem.dir/src/glad.c.o"
 
 # External object files for target SolarSystem
 SolarSystem_EXTERNAL_OBJECTS =
 
-SolarSystem: CMakeFiles/SolarSystem.dir/simple_sphere.cpp.o
+SolarSystem: CMakeFiles/SolarSystem.dir/gravity_sim.cpp.o
+SolarSystem: CMakeFiles/SolarSystem.dir/Sphere.cpp.o
 SolarSystem: CMakeFiles/SolarSystem.dir/src/glad.c.o
 SolarSystem: CMakeFiles/SolarSystem.dir/build.make
 SolarSystem: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework
 SolarSystem: /opt/homebrew/lib/libglfw.3.4.dylib
 SolarSystem: CMakeFiles/SolarSystem.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable SolarSystem"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/keshavbalaji/Desktop/Workspaces/Solar_System/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable SolarSystem"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SolarSystem.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

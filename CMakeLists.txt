@@ -21,7 +21,8 @@ set(GLAD_SOURCES
 
 # Add main source files
 set(SOURCES
-    simple_sphere.cpp
+    gravity_sim.cpp
+    Sphere.cpp
     ${GLAD_SOURCES}
 )
 
