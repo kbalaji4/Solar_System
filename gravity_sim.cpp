@@ -30,6 +30,20 @@ glm::vec3 cameraPos = glm::vec3(0.0f, 2.0f, 8.0f);  // Move camera back and up f
 glm::vec3 cameraFront = glm::vec3(0.0f, -0.2f, -1.0f);  // Look slightly down
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
+// Default camera values for reset
+glm::vec3 defaultCameraPos = glm::vec3(0.0f, 2.0f, 8.0f);
+glm::vec3 defaultCameraFront = glm::vec3(0.0f, -0.2f, -1.0f);
+float defaultYaw = -90.0f;
+float defaultPitch = 0.0f;
+
+// Camera rotation variables
+float yaw = -90.0f;
+float pitch = 0.0f;
+
+// Timing
+float deltaTime = 0.0f;
+float lastFrame = 0.0f;
+
 
 
 // Shader sources
@@ -146,6 +160,11 @@ int main() {
     
     // Render loop
     while (!glfwWindowShouldClose(window)) {
+        // Calculate delta time
+        float currentFrame = static_cast<float>(glfwGetTime());
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+        
         // Input
         processInput(window);
         
@@ -189,9 +208,49 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 }
 
+// Helper function to update camera front vector
+void updateCameraFront() {
+    glm::vec3 front;
+    front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.y = sin(glm::radians(pitch));
+    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    cameraFront = glm::normalize(front);
+}
+
 void processInput(GLFWwindow* window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+    
+    float cameraSpeed = static_cast<float>(2.5 * deltaTime);
+    float rotationSpeed = static_cast<float>(50.0 * deltaTime); // Degrees per second
+    
+    // W/S for zoom in/out (forward/backward)
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        cameraPos += cameraSpeed * cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        cameraPos -= cameraSpeed * cameraFront;
+    
+    // A/D for rotation (clockwise/counterclockwise around current view)
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        // Rotate counterclockwise (left)
+        yaw -= rotationSpeed;
+        updateCameraFront();
+    }
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        // Rotate clockwise (right)
+        yaw += rotationSpeed;
+        updateCameraFront();
+    }
+    
+    // Arrow keys for movement (left/right/up/down)
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+        cameraPos += cameraSpeed * cameraUp;
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+        cameraPos -= cameraSpeed * cameraUp;
     
     // Toggle bounce on/off with B key
     static bool bPressed = false;
@@ -215,40 +274,15 @@ void processInput(GLFWwindow* window) {
         gPressed = false;
     }
     
-    // Adjust orbital velocity with arrow keys
-    static bool upPressed = false;
-    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS && !upPressed) {
-        // Increase orbital velocity for both spheres
-        for (auto& sphere : spheres) {
-            sphere.velocityZ *= 1.2f;  // Increase by 20%
-        }
-        std::cout << "Increased orbital velocity" << std::endl;
-        upPressed = true;
-    }
-    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE) {
-        upPressed = false;
-    }
-    
-    static bool downPressed = false;
-    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS && !downPressed) {
-        // Decrease orbital velocity for both spheres
-        for (auto& sphere : spheres) {
-            sphere.velocityZ *= 0.8f;  // Decrease by 20%
-        }
-        std::cout << "Decreased orbital velocity" << std::endl;
-        downPressed = true;
-    }
-    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_RELEASE) {
-        downPressed = false;
-    }
-    
-    // Reset orbital velocities with R key
+    // Reset view with R key
     static bool rPressed = false;
     if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS && !rPressed) {
-        // Reset to initial orbital velocities
-        spheres[0].velocityZ = 2.0f;   // Red sphere
-        spheres[1].velocityZ = -2.0f;  // Blue sphere
-        std::cout << "Reset orbital velocities" << std::endl;
+        // Reset camera position and rotation
+        cameraPos = defaultCameraPos;
+        cameraFront = defaultCameraFront;
+        yaw = defaultYaw;
+        pitch = defaultPitch;
+        std::cout << "View reset to default" << std::endl;
         rPressed = true;
     }
     if (glfwGetKey(window, GLFW_KEY_R) == GLFW_RELEASE) {
