@@ -16,16 +16,18 @@ const unsigned int SCR_HEIGHT = 600;
 // Physics configuration
 PhysicsConfig physicsConfig;
 
-// Gravity simulation variables
+// Much smaller mass for manageable gravitational effects
+const float MOON_MASS = 1e15f;  // 1 million kg (very small mass)
+
+// Gravity simulation variables - Two spheres with orbital velocities
 std::vector<SpherePhysics> spheres = {
-    SpherePhysics(-1.5f, 2.0f, 0.0f, 0.0f, 0.2f, glm::vec3(0.8f, 0.3f, 0.3f)),  // Small red sphere
-    SpherePhysics( 0.0f, 2.5f, 0.0f, 0.0f, 0.4f, glm::vec3(0.3f, 0.8f, 0.3f)),  // Medium green sphere
-    SpherePhysics( 1.5f, 3.0f, 0.0f, 0.0f, 0.6f, glm::vec3(0.3f, 0.3f, 0.8f))   // Large blue sphere
+    SpherePhysics(-1.5f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.4f, MOON_MASS, glm::vec3(0.8f, 0.3f, 0.3f)),  // Red sphere with Z velocity
+    SpherePhysics( 1.5f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.4f, MOON_MASS, glm::vec3(0.3f, 0.3f, 0.8f))   // Blue sphere with opposite Z velocity
 };
 
 // Camera variables
-glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraPos = glm::vec3(0.0f, 2.0f, 8.0f);  // Move camera back and up for better view
+glm::vec3 cameraFront = glm::vec3(0.0f, -0.2f, -1.0f);  // Look slightly down
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
 
@@ -200,6 +202,57 @@ void processInput(GLFWwindow* window) {
     }
     if (glfwGetKey(window, GLFW_KEY_B) == GLFW_RELEASE) {
         bPressed = false;
+    }
+    
+    // Toggle gravitational attraction with G key
+    static bool gPressed = false;
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS && !gPressed) {
+        physicsConfig.enableGravity = !physicsConfig.enableGravity;
+        std::cout << "Gravitational attraction " << (physicsConfig.enableGravity ? "ENABLED" : "DISABLED") << std::endl;
+        gPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_RELEASE) {
+        gPressed = false;
+    }
+    
+    // Adjust orbital velocity with arrow keys
+    static bool upPressed = false;
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS && !upPressed) {
+        // Increase orbital velocity for both spheres
+        for (auto& sphere : spheres) {
+            sphere.velocityZ *= 1.2f;  // Increase by 20%
+        }
+        std::cout << "Increased orbital velocity" << std::endl;
+        upPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE) {
+        upPressed = false;
+    }
+    
+    static bool downPressed = false;
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS && !downPressed) {
+        // Decrease orbital velocity for both spheres
+        for (auto& sphere : spheres) {
+            sphere.velocityZ *= 0.8f;  // Decrease by 20%
+        }
+        std::cout << "Decreased orbital velocity" << std::endl;
+        downPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_RELEASE) {
+        downPressed = false;
+    }
+    
+    // Reset orbital velocities with R key
+    static bool rPressed = false;
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS && !rPressed) {
+        // Reset to initial orbital velocities
+        spheres[0].velocityZ = 2.0f;   // Red sphere
+        spheres[1].velocityZ = -2.0f;  // Blue sphere
+        std::cout << "Reset orbital velocities" << std::endl;
+        rPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_RELEASE) {
+        rPressed = false;
     }
     
     // Adjust bounce damping with + and - keys

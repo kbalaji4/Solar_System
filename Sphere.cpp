@@ -99,12 +99,21 @@ void Sphere::render(float x, float y, float z, float scale, unsigned int shaderP
 }
 
 void Sphere::updatePhysics(std::vector<SpherePhysics>& spheres, const PhysicsConfig& config) {
+    // Calculate gravitational forces between all spheres
+    if (config.enableGravity) {
+        calculateGravitationalForces(spheres, config);
+    }
+    
     for (auto& sphere : spheres) {
-        // Apply gravity
-        sphere.velocityY -= config.gravity * config.deltaTime;
+        // Only apply Earth gravity if gravitational attraction is disabled
+        if (!config.enableGravity) {
+            sphere.velocityY -= config.gravity * config.deltaTime;
+        }
         
-        // Update position
+        // Update position using 3D velocity
+        sphere.x += sphere.velocityX * config.deltaTime;
         sphere.y += sphere.velocityY * config.deltaTime;
+        sphere.z += sphere.velocityZ * config.deltaTime;
         
         // Check for bottom boundary
         if (sphere.y - sphere.radius < config.bottomBoundary) {
@@ -125,6 +134,91 @@ void Sphere::updatePhysics(std::vector<SpherePhysics>& spheres, const PhysicsCon
         if (sphere.y + sphere.radius > config.topBoundary) {
             sphere.y = config.topBoundary - sphere.radius;
             sphere.velocityY = 0.0f;  // Stop upward motion
+        }
+        
+        // Keep spheres within screen bounds (X and Z axes)
+        float leftBoundary = -3.0f;
+        float rightBoundary = 3.0f;
+        float frontBoundary = -3.0f;
+        float backBoundary = 3.0f;
+        
+        // X-axis boundaries
+        if (sphere.x - sphere.radius < leftBoundary) {
+            sphere.x = leftBoundary + sphere.radius;
+            sphere.velocityX = -sphere.velocityX * config.bounceDamping;  // Bounce off left wall
+        }
+        if (sphere.x + sphere.radius > rightBoundary) {
+            sphere.x = rightBoundary - sphere.radius;
+            sphere.velocityX = -sphere.velocityX * config.bounceDamping;  // Bounce off right wall
+        }
+        
+        // Z-axis boundaries
+        if (sphere.z - sphere.radius < frontBoundary) {
+            sphere.z = frontBoundary + sphere.radius;
+            sphere.velocityZ = -sphere.velocityZ * config.bounceDamping;  // Bounce off front wall
+        }
+        if (sphere.z + sphere.radius > backBoundary) {
+            sphere.z = backBoundary - sphere.radius;
+            sphere.velocityZ = -sphere.velocityZ * config.bounceDamping;  // Bounce off back wall
+        }
+    }
+}
+
+void Sphere::calculateGravitationalForces(std::vector<SpherePhysics>& spheres, const PhysicsConfig& config) {
+    for (size_t i = 0; i < spheres.size(); ++i) {
+        for (size_t j = i + 1; j < spheres.size(); ++j) {
+            auto& sphere1 = spheres[i];
+            auto& sphere2 = spheres[j];
+            
+            // Calculate direction vector (matching your equation)
+            float dx = sphere2.x - sphere1.x;
+            float dy = sphere2.y - sphere1.y;
+            float dz = sphere2.z - sphere1.z;
+            float distance = sqrt(dx * dx + dy * dy + dz * dz);
+            
+            if (distance > 0) {
+                // Calculate unit direction vector
+                std::vector<float> direction = {dx / distance, dy / distance, dz / distance};
+                
+                // Scale distance for force calculation
+                distance *= config.distanceScale;
+                
+                // Calculate gravitational force: F = G * m1 * m2 / r²
+                double Gforce = (config.gravitationalConstant * sphere1.mass * sphere2.mass) / (distance * distance);
+                
+                // Calculate acceleration: a = F/m
+                float acc1 = Gforce / sphere1.mass;
+                std::vector<float> acc = {direction[0] * acc1, direction[1] * acc1, direction[2] * acc1};
+                
+                // Apply acceleration to velocities (v = v0 + a*t)
+                sphere1.velocityX += acc[0] * config.deltaTime;
+                sphere1.velocityY += acc[1] * config.deltaTime;
+                sphere1.velocityZ += acc[2] * config.deltaTime;
+                
+                // Apply opposite force to sphere2
+                sphere2.velocityX -= acc[0] * config.deltaTime;
+                sphere2.velocityY -= acc[1] * config.deltaTime;
+                sphere2.velocityZ -= acc[2] * config.deltaTime;
+                
+                // Limit maximum velocities to prevent runaway acceleration
+                float maxVelocity = 10.0f;
+                sphere1.velocityX = std::max(-maxVelocity, std::min(maxVelocity, sphere1.velocityX));
+                sphere1.velocityY = std::max(-maxVelocity, std::min(maxVelocity, sphere1.velocityY));
+                sphere1.velocityZ = std::max(-maxVelocity, std::min(maxVelocity, sphere1.velocityZ));
+                
+                sphere2.velocityX = std::max(-maxVelocity, std::min(maxVelocity, sphere2.velocityX));
+                sphere2.velocityY = std::max(-maxVelocity, std::min(maxVelocity, sphere2.velocityY));
+                sphere2.velocityZ = std::max(-maxVelocity, std::min(maxVelocity, sphere2.velocityZ));
+                
+                // Debug output (more frequently)
+                static int debugCounter = 0;
+                if (debugCounter++ % 60 == 0) {  // Every second at 60fps
+                    std::cout << "Distance: " << distance/config.distanceScale << " units, Force: " << Gforce << "N" << std::endl;
+                    std::cout << "Acceleration: (" << acc[0] << ", " << acc[1] << ", " << acc[2] << ")" << std::endl;
+                    std::cout << "Sphere1 vel: (" << sphere1.velocityX << ", " << sphere1.velocityY << ", " << sphere1.velocityZ << ")" << std::endl;
+                    std::cout << "Sphere2 vel: (" << sphere2.velocityX << ", " << sphere2.velocityY << ", " << sphere2.velocityZ << ")" << std::endl;
+                }
+            }
         }
     }
 }
